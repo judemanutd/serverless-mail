@@ -1,0 +1,14 @@
+# npm, yarn files
+node_modules/
+/.idea/
+*.iml
+*.log
+logs/
+.env
+coverage
+*.sh
+
+dist
+tmp
+
+.serverless

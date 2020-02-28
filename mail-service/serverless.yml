@@ -1,0 +1,36 @@
+service: mail-service
+app: mail-service
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  stage: ${opt:stage, '${env:STAGE}'}
+  runtime: nodejs12.x
+  region: ap-south-1
+  environment:
+    MONGO_DB_URI: ${env:MONGO_DB_URI}
+    MAIL_SERVICE_API_KEY: ${env:MAIL_SERVICE_API_KEY}
+    MAIL_SERVICE_DOMAIN: ${env:MAIL_SERVICE_DOMAIN}
+    ENVIRONMENT: ${self:provider.stage}
+
+functions:
+  mail:
+    handler: handler.router
+    timeout: 30
+    events:
+      - http:
+          path: v1/{proxy+}
+          method: any
+
+package:
+  exclude:
+    - test/**
+    - .babelrc
+    - .eslintrc.json
+    - .prettierignore
+    - .prettierrc
+    - .env
+    - .gitignore

@@ -1,0 +1,47 @@
+{
+  "name": "mail-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "sls offline start --useSeparateProcesses"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.0",
+    "http-status": "^1.4.2",
+    "lambda-api": "^0.10.5",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.7.3",
+    "aws-sdk": "^2.628.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "serverless-dotenv-plugin": "^2.3.2",
+    "serverless-offline": "^5.12.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js}": [
+        "npx eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "./public",
+      "./node_modules",
+      "./dist"
+    ]
+  }
+}
